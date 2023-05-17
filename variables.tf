@@ -27,3 +27,8 @@ variable "gateway_purpose" {
   type = string 
   default = "vpc_peering"
 }
+variable "gateway_length" {
+  type = number
+  default = 24
+}
+
