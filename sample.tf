@@ -7,7 +7,6 @@ provider "google" {
 # Create GCP storage bucket
 resource "google_storage_bucket" "my_bucket" {
   name          = "dhiva_bucket"
-  location      = "EU"
 }
 
 # Apply read only access to bucket
