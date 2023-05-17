@@ -18,3 +18,12 @@ variable "vpc_name" {
   type = string
   default = "dhiva_vpc"
 }
+
+variable "gateway_name" {
+  type = string
+  default = "dhiva_gateway"
+}
+variable "gateway_purpose" {
+  type = string 
+  default = "vpc_peering"
+}
