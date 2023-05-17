@@ -39,7 +39,7 @@ resource "google_compute_global_address" "my_gateway" {
 }
 
 resource "google_compute_router" "my_router" {
-  name = "my-router"
+  name = var.gcp_router
   network = google_compute_network.my_vpc.self_link
   nat {
     source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
