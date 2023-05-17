@@ -77,7 +77,7 @@ If suppose you wan to create a multiple instances with different configuration t
 
 **Terraform state rm**
 * It is used to remove the resources from the terraform state altogether.
-* 
+ 
 ```
 terraform state rm [options] ADDRESS...
 ```
