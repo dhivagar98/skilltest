@@ -88,7 +88,6 @@ terraform state rm [options] ADDRESS...
 
 * To generate a diagram of all terraform resources in the statefile, we can use various open source tools and libraries available in terraform ecosystem.
 * The command line tool the **Terraform Graph** is for generating the terraform resource diagrams.
-* 
 ```
 terrafrom graph > graph.dot
 ```
@@ -121,6 +120,63 @@ count = var.run_remote_environment ? (var.TFC_RUN_ID != "Yes" ? 1: 0) : 0
 
 * We can apply terraform to multiple accounts simultaneously by adhering the security best practises, we can use seperate terraform workspace for each account and seperate state files and IAM roles.
 * We can use **terraform modules** also to encapsulate and resue the common infrastructure component. it can be version controlled as well.
+
+
+# SECTION 3B - GCP
+
+## 1. What are different network connectivity options to connect from On-prem or another cloud to GCP ?
+
+* **Cloud VPN** - It allows you to create secure tunnels between your on-prem to network and the VPC network in GCP. It provides the encrypted connectivity over the public traffic.
+* **Dedicated and partner interconnects** -  **Dedicated interconnect** provides the direct physical connetion between on-prem to GCP. **Partner interconnect** it was like third party service which means it allows you to connect to GCP through a supported service provider. It is better in terms of location.
+* We can use VPC and Shared VPC where **VPC** allows you to connect within same or different region in GCP whereas **shared VPC** allows you to connect with multiple projects.
+
+## 2. Where & how the FW rules are managed in GCP when using shared VPC architecture?
+
+* When we use Shared VPC architecture the firewall rules are managed at the **host project level**.  
+* The host project containes the shared VPC and serves as centralixed location for managing firewalls for the CRED operations.
+* once we define the FW rules in host project it was automatically applied to the associated service projects.
+
+## 3. How do you connect to GKE cluster from GCP cloudshell ?
+
+* To connect the GKE cluster from the Cloud shell, from the cloud shell terminal navigate to the project with this command.
+
+```
+gcloud config set project <project_id>
+```
+
+* Authenticate with your gcloud account by this command
+
+```
+gcloud auth login
+```
+
+* To connect the cluster by this command
+
+```
+gcloud container clusters get-credentials <CLUSTER_NAME> --zone <ZONE>
+```
+* now we can interact with the cluster using ```kubectl``` which command line tool for performing actions against clusters.'
+
+
+## 4. How is GCP VPC networking is different than AWS VPC networking ?
+
+* **In model** - GCP VPC networks has multiple regions and can interact with other regions without VPC peering. But AWS VPC networking model has only single region and VPC peering is required for the interactions.
+* **IP adress** - GCP VPC networks has single IP which can use across the different regions without conflict. But AWS VPC networking requires IP adress to be unique within each VPC, even if they are in different regions.
+* **Firewall** - GCP VPC networks used at instance level by based on Ip address and ports, where as in AWS they use security groups assocaited with instances to control traffics.
+* **Transit gateway** - AWS has the transit gateway which simplifies network connectivity by acting as a hub for connecting multiple VPC. however, GCP doesnt have a equivalent gateway like AWS has.
+
+## 5. Explain high level steps to create a service project in GCP org with Shared VPC enabled ?
+
+* ** Identify the shared VPC host project** - identify the host project that holds shared VPC network and it is responsible for managing firewall riles.
+* **create the service project** - create a new project or select the existing project to be the host project. ensure the project has all permission for managing FW rules.
+* **Enable shared VPC** - in the host project, enable the share vpc API and enable the shared VPC feature. it allows the host project to share VPC with other service project.
+* **create VPC network** - within host project create VPC network. define IP range, subnets, and other configs.
+* **Assign IAM roles** - Define the ISM roles to the user or groups who will be responsible for managing the shared VPC netwrk.
+* **create service project** - create a new project and select it as a service project for the host project.
+* **Enable the shared VPC for service project** - enable the share vpc API and associate with the host project. It establish a connection between host and service project.
+* **configure subnets** - with in service project create subnets with the shared VPC network. define ip adress and other subner configs required.
+
+
 
 
 
