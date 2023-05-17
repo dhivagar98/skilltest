@@ -32,10 +32,10 @@ name = var.vpc_name
 
 # create internet gateway
 resource "google_compute_global_address" "my_gateway" {
-  name = "dhiva_gateway"
-  purpose = "vpc_peering"
+  name = var.gateway_name
+  purpose = var.gateway_purpose
   address_type = "EXTERNAL"
-  prefix_length = 24
+  prefix_length = var.gateway_length
 }
 
 resource "google_compute_router" "my_router" {
