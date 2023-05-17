@@ -6,7 +6,7 @@ provider "google" {
 
 # Create GCP storage bucket
 resource "google_storage_bucket" "my_bucket" {
-  name          = "dhiva_bucket"
+  name          = var.bucket_name
 }
 
 # Apply read only access to bucket
