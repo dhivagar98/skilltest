@@ -8,3 +8,7 @@ variable "gcp_region" {
   default = "us-central"
 }
 
+variable "bucket_name" {
+  type = string
+  default = "dhiva_bucket"
+}
