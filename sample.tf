@@ -1,7 +1,7 @@
 provider "google" {
   credentials = file ("<path to SA key file>")
   project = var.gcp_project_id
-  region = "us-central1"
+  region = var.gcp_region
 }
 
 # Create GCP storage bucket
