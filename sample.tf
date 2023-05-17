@@ -27,7 +27,7 @@ resource "google_storage_bucket_iam_policy" "dhiva_bucket_policy" {
 
 # creating VPC
 resource "google_compute_network" "my_vpc" {
-name = "dhiva_vpc"
+name = var.vpc_name
 }
 
 # create internet gateway
