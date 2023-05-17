@@ -1,6 +1,6 @@
 provider "google" {
   credentials = file ("<path to SA key file>")
-  project = "<project id>"
+  project = var.gcp_project_id
   region = "us-central1"
 }
 
