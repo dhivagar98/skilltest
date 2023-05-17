@@ -31,4 +31,8 @@ variable "gateway_length" {
   type = number
   default = 24
 }
+variable "gcp_router" {
+  type = string
+  default = "my-router"
+}
 
