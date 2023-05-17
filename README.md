@@ -61,11 +61,13 @@ Both the argument is used to manage the multiple resource instances.
 
 **Terraform Count**
 * This argument is used with in a resource block to specify the number of resource instance that can be created. the count value must be a static number or expression.
+
 **Scenario**
 If suppose you want to create a number of instances with predefined or fixed configurations. we can use the ```terraform count``` and specify the count which the number of instances to be created.
 
 **Terraform for_each**
 * This argument is also used within resource block to dynamically create the multiple instances with different configurations. The ```for_each``` should be a map or key-value pairs.
+
 **Scenario**
 If suppose you wan to create a multiple instances with different configuration the ```for_each``` will be idle.
 
