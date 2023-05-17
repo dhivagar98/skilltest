@@ -1,2 +1,2 @@
 # skilltest
-skill test for sME
+skill test for SME
